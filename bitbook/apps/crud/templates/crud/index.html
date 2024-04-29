@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자의 알람</title>
+    <link rel="stylesheet" href="{{ url_for('crud.static', filename='style.css') }}"/>
+</head>
+<body>
+    {% extends "crud/base.html"%}
+    {% block title %}사용자의 알람{% endblock %}
+    {% block content %}
+    <h2>사용자의 일람</h2>
+
+    <a href="{{url_for('crud.create_user')}}">사용자 신규 작성</a>
+
+    <table>
+        <tr>
+            <th>주문자 id</th>
+            <th>주문자명</th>
+            <th>주소</th>
+            <th>양파</th>
+            <th>마늘</th>
+            <th>당근</th>
+            <th>총계</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>
+                <a href="{{url_for('crud.edit_user', user_id = user.id)}}">{{user.id}}</a>
+            </td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.address }}</td>
+            <td>{{ user.oni }}</td>
+            <td>{{ user.gar }}</td>
+            <td>{{ user.car }}</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}
+</body>
+</html>

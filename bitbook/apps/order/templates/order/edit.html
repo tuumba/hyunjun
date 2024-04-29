@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('order.static',filename = 'style.css')}}">
+    <title>주문 수량 수정</title>
+</head>
+<body>
+    {% extends "order/base.html" %}
+    {% block title %}주문 수량 수정{% endblock %}
+    {% block content %}
+    <h2>주문 수량 수정</h2>
+    <form action="{{url_for('order.edit_user',user_id = user.id)}}" method="POST" novalidate = "novalidate"></form>
+        {{form.csrf_token}}
+</body>
+</html>

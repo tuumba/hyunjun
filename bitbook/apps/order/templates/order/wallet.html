@@ -1,0 +1,37 @@
+{% extends "order/base.html" %}
+{% block title %}야채 주문{% endblock %}
+{% block content %}
+<h2>야채 주문</h2>
+
+<form 
+    action="{{url_for('order.wallet',next = request.args.get('next')) }}"
+    method="POST"
+    novalidate="novalidate"
+>
+    {% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+    {% endfor %}
+    {{ form.csrf_token }}
+    <p>
+        {{ form.gar.label }}
+        {{ form.gar(placeholder="마늘") }}
+    </p>
+    {% for error in form.gar.errors %}
+    <span style="color: red;">{{ error }}</span>
+    {% endfor %}
+    <p>
+        {{ form.car.label }} 
+        {{form.car(placeholder="당근")}}
+    </p>
+    {%for error in form.car.errors%}
+    <span style="color: red;">{{ error }}</span>
+    {% endfor %}
+    <p>
+        {{ form.oni.label }} 
+        {{ form.oni(placeholder="양파") }}</p>
+    {%for error in form.oni.errors%}
+    <span style="color: red;">{{ error }}</span>
+    {% endfor %}
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}
