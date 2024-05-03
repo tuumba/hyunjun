@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo 템플릿</title>
+</head>
+<body>
+    <h1>TODOLIST</h1>
+
+    <h1>
+        {{ todo.title}}
+    </h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button>생성</button>
+    </form>
+    <hr>
+      
+    {% for todo in todos %}
+        <h2>{{ todo.id }}번째 할일</h2>
+        <p>{{ todo.title }}</p>
+      
+        {% if todo.completed == False %}
+            <form action="{% url 'todos:complete' todo.id %}" method="POST">
+                {% csrf_token %}
+                <button>X</button>
+            </form>
+            <form action="{% url 'todos:edit' todo.id}" method="POST">
+                {% csrf_token %}
+                <button>수정</button>
+            </form>
+            <hr>
+        {% endif %}
+      
+    {% endfor %}
+
+</body>
+</html>
